@@ -16,10 +16,12 @@ items = [
 prices = list(map(lambda item : item['price'], items))
 print(f'precios -> {prices}')
 
-new_items = list(map(lambda item : {
-    'product' : item['product'],
-    'price' : item['price'],
-    'tax' : item['price'] * 0.19
-}, items))
+def add_tax(item):
+    new_item = item.copy()
+    new_item['tax'] = new_item['price'] * 0.19
+    return new_item
+
+new_items = list(map(add_tax, items))
 
 print(f'new items -> {new_items}')
+print(f'old items -> {items}')
